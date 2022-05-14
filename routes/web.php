@@ -22,6 +22,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('admin')->group(function (){
-    Route::get('/', [App\Http\Controllers\Admin\IndexController::class, 'index'])->name('admin.index');
+Route::prefix('admin')->group(function () {
+    Route::get('/', \App\Http\Controllers\Admin\IndexController::class);
+    Route::get('/{page}', \App\Http\Controllers\Admin\IndexController::class)->where('page', '.*');
 });

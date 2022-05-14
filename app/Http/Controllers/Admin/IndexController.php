@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
-    {
-        return view('admin.layout.main');
-    }
+   public function __invoke()
+   {
+       return view('admin.pages.index');
+   }
 }
