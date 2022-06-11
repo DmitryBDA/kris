@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6875d479eab3ce5a3ff0f1930adb5faf",
+    "content-hash": "65caa7faf3d301098d06e8bbee1a3899",
     "packages": [
         {
             "name": "brick/math",
@@ -892,6 +892,83 @@
                 }
             ],
             "time": "2022-03-20T21:55:58+00:00"
+        },
+        {
+            "name": "jenssegers/date",
+            "version": "v4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jenssegers/date.git",
+                "reference": "506f86096e0b512f9ece6ad0ccae62b03c125771"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jenssegers/date/zipball/506f86096e0b512f9ece6ad0ccae62b03c125771",
+                "reference": "506f86096e0b512f9ece6ad0ccae62b03c125771",
+                "shasum": ""
+            },
+            "require": {
+                "nesbot/carbon": "^2.16"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5",
+                "satooshi/php-coveralls": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Jenssegers\\Date\\DateServiceProvider"
+                    ],
+                    "aliases": {
+                        "Date": "Jenssegers\\Date\\Date"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jenssegers\\Date\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jens Segers",
+                    "homepage": "https://jenssegers.com"
+                }
+            ],
+            "description": "A date library to help you work with dates in different languages",
+            "homepage": "https://github.com/jenssegers/date",
+            "keywords": [
+                "carbon",
+                "date",
+                "datetime",
+                "i18n",
+                "laravel",
+                "time",
+                "translation"
+            ],
+            "support": {
+                "issues": "https://github.com/jenssegers/date/issues",
+                "source": "https://github.com/jenssegers/date/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/jenssegers",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/jenssegers/date",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-04-28T06:35:54+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2790,64 +2867,6 @@
                 }
             ],
             "time": "2022-03-27T21:42:02+00:00"
-        },
-        {
-            "name": "schulzefelix/laravel-data-transfer-object",
-            "version": "1.5.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/schulzefelix/laravel-data-transfer-object.git",
-                "reference": "f7c112abe3fbbf185f9f4ae794f03ba85302474e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/schulzefelix/laravel-data-transfer-object/zipball/f7c112abe3fbbf185f9f4ae794f03ba85302474e",
-                "reference": "f7c112abe3fbbf185f9f4ae794f03ba85302474e",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^9.0",
-                "php": "^8.0.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.5.10"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SchulzeFelix\\DataTransferObject\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Felix Schulze",
-                    "email": "github@schulze.co",
-                    "homepage": "https://schulze.co",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Data Transfer Objects with Attribute Casting and Date Mutators.",
-            "homepage": "https://github.com/schulzefelix/laravel-data-transfer-object",
-            "keywords": [
-                "Data Transfer Object",
-                "accessors",
-                "attribute casting",
-                "dto",
-                "felix",
-                "laravel-data-transfer-object",
-                "mutators",
-                "schulzefelix",
-                "serialization"
-            ],
-            "support": {
-                "issues": "https://github.com/schulzefelix/laravel-data-transfer-object/issues",
-                "source": "https://github.com/schulzefelix/laravel-data-transfer-object/tree/1.5.2"
-            },
-            "time": "2022-04-16T17:36:45+00:00"
         },
         {
             "name": "spatie/data-transfer-object",

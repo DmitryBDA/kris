@@ -25,4 +25,14 @@ class RecordService
     return $result;
   }
 
+    public function generateArrDataForRecord(array $arRecord): array
+    {
+        $obDate = Carbon::create($arRecord['start']);
+
+        $arRecord['time'] = $obDate->format('H:i');
+        $arRecord['dayWeek'] = Date::parse($arRecord['start'])->format('l');
+        $arRecord['date'] = Date::parse($arRecord['start'])->format('d F Y');
+
+        return $arRecord;
+    }
 }

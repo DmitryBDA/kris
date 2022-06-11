@@ -90,4 +90,32 @@ class RecordController extends Controller
         return response()->json(['success' => $res], 201);
     }
 
+    public function detail($recordId, RecordService $recordService): \Illuminate\Http\JsonResponse
+    {
+        //Получить объект записи по id
+        $arRecord = $this->recordRepository->getById($recordId);
+
+        //Сформировать массив данных в нужном формате
+        $resultArrData = $recordService->generateArrDataForRecord($arRecord);
+
+        /*
+                //Сформировать массив данных в нужном формате
+                $resultArrData = $recordService->generateArrDataForRecord($obRecord);
+
+                //Если у записи задан пользователь
+                if ($obRecord->user) {
+                    //Получить дополнительные записи кроме выбраной (если они есть)
+                    $otherRecords = $this->recordRepository->getRecordsByUserId($obRecord->user->id, $obRecord->start);
+
+                    if ($otherRecords->isNotEmpty()) {
+                        //Сформировать массив дополнительных записей в нужном формате
+                        $arOtherTimeRecords = $recordService->generateArrayOtherRecords($otherRecords);
+                        //Добавить в результирующий массив данные о доп.записях
+                        $resultArrData['otherTimeRecords'] = $arOtherTimeRecords;
+                    }
+                }
+        */
+        return response()->json($resultArrData);
+    }
+
 }

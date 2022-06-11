@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\RecordController;
+use App\Http\Controllers\Admin\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,8 +25,12 @@ Route::prefix('admin')->group(function () {
         Route::prefix('records')->group(function () {
             Route::get('/', 'records')->name('admin.records');
             Route::post('/', 'create')->name('admin.records.create');
+            Route::get('/{record_id}', 'detail')->name('admin.records.detail');
         });
     });
 
+    Route::prefix('services')->group(function () {
+        Route::get('/', [ServiceController::class, 'get'])->name('admin.services');
+    });
 
 });

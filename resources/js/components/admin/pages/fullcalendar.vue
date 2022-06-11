@@ -5,11 +5,13 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 
 import AddRecords from "../popup/add-records";
+import ActionRecord from "../popup/action-record";
 
 export default {
     components: {
         FullCalendar, // make the <FullCalendar> tag available
         AddRecords,
+        ActionRecord,
     },
     data() {
         return {
@@ -33,7 +35,7 @@ export default {
                 },
                 weekends: true,
                 events: '',
-                //eventClick: this.clickRecord,
+                eventClick: this.clickRecord,
                 // eventsSet: this.handleEvents,
                 dateClick: this.dateClick
                 /* you can update a remote database when these fire:
@@ -42,7 +44,8 @@ export default {
                 eventRemove:
                 */
             },
-            showCalendar: false
+            showCalendar: false,
+            dataRecord: [],
         }
     },
     methods: {
@@ -74,6 +77,15 @@ export default {
             this.$refs.add_records.isDisabled = false
             this.$refs.add_records.$refs._open_modal_add_record.click()
         },
+        clickRecord(record) {
+            const recordId = record.event._def.publicId
+            axios.get(`/api/admin/records/${recordId}`, {
+                //headers: {'Authorization': 'Bearer fjheu834jd740dk3j59djh3948dk3498e'},
+            })
+                .then((response) => {
+                    this.dataRecord = response.data
+                })
+        },
     },
     mounted() {
         this.showRecords()
@@ -84,6 +96,7 @@ export default {
     <div class="card card-primary">
         <FullCalendar v-if="showCalendar" :options="calendarOptions" />
         <AddRecords ref="add_records"></AddRecords>
+        <ActionRecord :dataRecord="dataRecord" ref="action_record"></ActionRecord>
     </div>
 </template>
 <style>

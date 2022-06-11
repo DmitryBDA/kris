@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Record as Model;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RecordRepository extends CoreRepository
 {
@@ -32,6 +33,19 @@ class RecordRepository extends CoreRepository
             ->append('className');
 
         return $obRecordsList->toArray();
+    }
+
+    public function getById($id)
+    {
+        $obRecord = $this->startCondition()
+            ->where('id', $id)
+            ->select('id', 'comment', 'start', 'service_id', 'status', 'title', 'user_id')
+            ->with('user:id,surname,name,phone')
+            ->first();
+
+        if($obRecord) return $obRecord->toArray();
+
+        throw new NotFoundHttpException("Запись с id [$id] не найдена");
     }
 
 }
