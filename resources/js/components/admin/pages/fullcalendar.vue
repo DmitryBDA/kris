@@ -41,10 +41,21 @@ export default {
                 eventChange:
                 eventRemove:
                 */
-            }
+            },
+            showCalendar: false
         }
     },
     methods: {
+        showRecords() {
+            axios
+                .get('/api/admin/records', {
+                    //headers: {'Authorization': 'Bearer fjheu834jd740dk3j59djh3948dk3498e'},
+                })
+                .then((response) => {
+                    this.calendarOptions.events = response.data
+                    this.showCalendar = true
+                })
+        },
         dateClick(record) {
             let nameChoiceDate = new Date(record.dateStr).toLocaleString('ru', {
                 year: 'numeric',
@@ -65,18 +76,33 @@ export default {
         },
     },
     mounted() {
-
+        this.showRecords()
     }
 }
 </script>
 <template>
     <div class="card card-primary">
-        <FullCalendar :options="calendarOptions" />
+        <FullCalendar v-if="showCalendar" :options="calendarOptions" />
         <AddRecords ref="add_records"></AddRecords>
     </div>
 </template>
 <style>
 a {
     color: black;
+}
+.greenEvent {
+    background-color: #1d8b1d;
+}
+
+.yellowEvent {
+    background-color: #a7a739;
+}
+
+.redEvent {
+    background-color: #bf0d0d;
+}
+
+.greyEvent {
+    background-color: grey;
 }
 </style>

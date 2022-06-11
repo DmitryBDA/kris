@@ -12,6 +12,7 @@ use App\Repositories\UserRepository;
 use App\Services\RecordService;
 use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class RecordController extends Controller
 {
@@ -20,6 +21,30 @@ class RecordController extends Controller
     public function __construct()
     {
         $this->recordRepository = app(RecordRepository::class);
+    }
+
+    /**
+     * @OA\Get(
+     *     path="api/admin/records",
+     *     description="Получить все записи",
+     *     @OA\Response(
+     *         response="200",
+     *        @OA\JsonContent(
+     *                  (type="array", @OA\Items(
+     *                      @OA\Property(property="id", type="integer"),
+     *                      @OA\Property(property="status", type="integer"),
+     *                      @OA\Property(property="start", type="dateTime"),
+     *                      @OA\Property(property="title", type="string"),
+     *                      @OA\Property(property="className", type="string"),
+     *                  )
+     *             )
+     *         )
+     *     )
+     */
+    public function records(): \Illuminate\Http\JsonResponse
+    {
+        $arRecordsList = $this->recordRepository->getAllFromToday();
+        return response()->json($arRecordsList, ResponseAlias::HTTP_OK);
     }
 
     /**

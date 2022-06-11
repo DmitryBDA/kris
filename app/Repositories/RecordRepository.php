@@ -22,4 +22,16 @@ class RecordRepository extends CoreRepository
     return $result;
   }
 
+    public function getAllFromToday()
+    {
+        //Получить список записей от сегоднящнего дня
+        $obRecordsList = $this->startCondition()
+            ->whereDate('start', '>=', now()->format('Y-m-d 00:00:00'))
+            ->orderBy('start', 'asc')
+            ->get(['id', 'title', 'start', 'status'])
+            ->append('className');
+
+        return $obRecordsList->toArray();
+    }
+
 }

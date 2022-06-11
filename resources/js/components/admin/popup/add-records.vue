@@ -83,7 +83,7 @@ export default {
             )
                 .then((response) => {
                     if(response.data.success){
-                        //this.$parent.showRecords()
+                        this.$parent.showRecords()
                         //this.successAdd()
                         this.$refs._close_modal_add_records.click()
                     } else {

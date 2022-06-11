@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('admin')->group(function () {
     Route::controller(RecordController::class)->group(function () {
         Route::prefix('records')->group(function () {
-            //Route::get('/', 'records')->name('admin.records');
+            Route::get('/', 'records')->name('admin.records');
             Route::post('/', 'create')->name('admin.records.create');
         });
     });

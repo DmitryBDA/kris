@@ -11,21 +11,37 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Record extends Model
 {
-  use HasFactory;
+    use HasFactory;
 
-  /** @var string[] Заполняемые поля модели */
-  protected $fillable = [
-    'title',
-    'start',
-    'end',
-    'status',
-    'service_id',
-    'user_id',
-    'comment'
-  ];
+    /** @var string[] Заполняемые поля модели */
+    protected $fillable = [
+        'title',
+        'start',
+        'end',
+        'status',
+        'service_id',
+        'user_id',
+        'comment'
+    ];
 
-  public function user()
-  {
-    return $this->hasOne(User::class, 'id', 'user_id');
-  }
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    // Добавление атрибута className в зависимости от статуса
+    // при использовании toArray()
+    public function getClassNameAttribute()
+    {
+        switch ($this->status) {
+            case 1:
+                return "greenEvent";
+            case 2:
+                return "yellowEvent";
+            case 3:
+                return "redEvent";
+            case 4:
+                return "greyEvent";
+        }
+    }
 }

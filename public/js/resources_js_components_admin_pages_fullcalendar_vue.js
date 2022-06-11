@@ -14113,10 +14113,20 @@ __webpack_require__.r(__webpack_exports__);
         eventRemove:
         */
 
-      }
+      },
+      showCalendar: false
     };
   },
   methods: {
+    showRecords: function showRecords() {
+      var _this = this;
+
+      axios.get('/api/admin/records', {//headers: {'Authorization': 'Bearer fjheu834jd740dk3j59djh3948dk3498e'},
+      }).then(function (response) {
+        _this.calendarOptions.events = response.data;
+        _this.showCalendar = true;
+      });
+    },
     dateClick: function dateClick(record) {
       var nameChoiceDate = new Date(record.dateStr).toLocaleString('ru', {
         year: 'numeric',
@@ -14137,7 +14147,9 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.add_records.$refs._open_modal_add_record.click();
     }
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    this.showRecords();
+  }
 });
 
 /***/ }),
@@ -14185,8 +14197,9 @@ __webpack_require__.r(__webpack_exports__);
       } // {headers: { 'Authorization' : 'Bearer fjheu834jd740dk3j59djh3948dk3498e'}}
       ).then(function (response) {
         if (response.data.success) {
-          //this.$parent.showRecords()
-          //this.successAdd()
+          _this.$parent.showRecords(); //this.successAdd()
+
+
           _this.$refs._close_modal_add_records.click();
         } else {//this.errorSave()
         }
@@ -14250,11 +14263,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_AddRecords = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AddRecords");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FullCalendar, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [$data.showCalendar ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FullCalendar, {
+    key: 0,
     options: $data.calendarOptions
   }, null, 8
   /* PROPS */
-  , ["options"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AddRecords, {
+  , ["options"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AddRecords, {
     ref: "add_records"
   }, null, 512
   /* NEED_PATCH */
@@ -14471,7 +14485,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\na {\n    color: black;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\na {\n    color: black;\n}\n.greenEvent {\n    background-color: #1d8b1d;\n}\n.yellowEvent {\n    background-color: #a7a739;\n}\n.redEvent {\n    background-color: #bf0d0d;\n}\n.greyEvent {\n    background-color: grey;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
