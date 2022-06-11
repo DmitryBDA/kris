@@ -4,9 +4,12 @@ import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 
+import AddRecords from "../popup/add-records";
+
 export default {
     components: {
-        FullCalendar // make the <FullCalendar> tag available
+        FullCalendar, // make the <FullCalendar> tag available
+        AddRecords,
     },
     data() {
         return {
@@ -32,7 +35,7 @@ export default {
                 events: '',
                 //eventClick: this.clickRecord,
                 // eventsSet: this.handleEvents,
-                //dateClick: this.dateClick
+                dateClick: this.dateClick
                 /* you can update a remote database when these fire:
                 eventAdd:
                 eventChange:
@@ -40,9 +43,40 @@ export default {
                 */
             }
         }
+    },
+    methods: {
+        dateClick(record) {
+            let nameChoiceDate = new Date(record.dateStr).toLocaleString('ru', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                weekday: 'long'
+            });
+            this.$refs.add_records.date = record.dateStr
+            this.$refs.add_records.nameChoiceDate = nameChoiceDate
+            this.$refs.add_records.records = [{
+                typeMyself: false,
+                time: '00:00',
+                status: 1,
+                title: ''
+            }]
+            this.$refs.add_records.isDisabled = false
+            this.$refs.add_records.$refs._open_modal_add_record.click()
+        },
+    },
+    mounted() {
+
     }
 }
 </script>
 <template>
-    <FullCalendar :options="calendarOptions" />
+    <div class="card card-primary">
+        <FullCalendar :options="calendarOptions" />
+        <AddRecords ref="add_records"></AddRecords>
+    </div>
 </template>
+<style>
+a {
+    color: black;
+}
+</style>
