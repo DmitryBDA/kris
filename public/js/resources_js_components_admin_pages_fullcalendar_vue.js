@@ -14177,23 +14177,24 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     saveRecords: function saveRecords(event) {
-      console.log('save'); // axios.post('/api/admin/records',
-      //     {records: this.records, date: this.date},
-      //     {headers: { 'Authorization' : 'Bearer fjheu834jd740dk3j59djh3948dk3498e'}})
-      //     .then((response) => {
-      //         if(response.data.success){
-      //             this.$parent.showRecords()
-      //             this.successAdd()
-      //             this.$refs._close_modal_add_records.click()
-      //         } else {
-      //             this.errorSave()
-      //         }
-      //     })
-      //     .catch(err => {
-      //         if (err.response) {
-      //             this.errorMessage = err.response.data.errors
-      //         }
-      //     })
+      var _this = this;
+
+      axios.post('/api/admin/records', {
+        records: this.records,
+        date: this.date
+      } // {headers: { 'Authorization' : 'Bearer fjheu834jd740dk3j59djh3948dk3498e'}}
+      ).then(function (response) {
+        if (response.data.success) {
+          //this.$parent.showRecords()
+          //this.successAdd()
+          _this.$refs._close_modal_add_records.click();
+        } else {//this.errorSave()
+        }
+      })["catch"](function (err) {
+        if (err.response) {
+          _this.errorMessage = err.response.data.errors;
+        }
+      });
     },
     inputAdd: function inputAdd(type) {
       this.records.push({
