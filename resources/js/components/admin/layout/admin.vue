@@ -84,10 +84,17 @@
                         <!-- Add icons to the links using the .nav-icon class
                              with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
+
                             <router-link :to="{name: 'admin.index'}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Главная</p>
                             </router-link>
+
+                            <router-link :to="{name: 'admin.fullcalendar'}" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>Календарь</p>
+                            </router-link>
+
                         </li>
                     </ul>
                 </nav>

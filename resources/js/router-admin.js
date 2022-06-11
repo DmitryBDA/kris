@@ -4,6 +4,10 @@ const routes = [
     {
         path: "/admin", component: () => import('./components/admin/pages/main'),
         name: "admin.index",
+    },
+    {
+        path: "/admin/fullcalendar", component: () => import('./components/admin/pages/fullcalendar'),
+        name: "admin.fullcalendar",
     }
 ];
 
