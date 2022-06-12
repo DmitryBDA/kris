@@ -48,4 +48,18 @@ class RecordRepository extends CoreRepository
         throw new NotFoundHttpException("Запись с id [$id] не найдена");
     }
 
+
+    public function cancelRecord($recordId)
+    {
+        $result = $this->startCondition()
+            ->find($recordId)
+            ->update([
+                'status' => 1,
+                'user_id' => null,
+                'service_id' => null,
+                'comment' => null,
+            ]);
+
+        return $result;
+    }
 }

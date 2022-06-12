@@ -118,4 +118,11 @@ class RecordController extends Controller
         return response()->json($resultArrData);
     }
 
+    public function cancel($recordId)
+    {
+        $result = $this->recordRepository->cancelRecord($recordId);
+
+        return response()->json($result);
+    }
+
 }

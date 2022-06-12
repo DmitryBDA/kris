@@ -26,6 +26,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/', 'records')->name('admin.records');
             Route::post('/', 'create')->name('admin.records.create');
             Route::get('/{record_id}', 'detail')->name('admin.records.detail');
+            Route::put('/cancel/{record_id}', 'cancel')->name('admin.records.cancel');
         });
     });
 

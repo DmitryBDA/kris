@@ -14234,7 +14234,22 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   computed: {},
-  methods: {}
+  methods: {
+    cancelRecord: function cancelRecord() {
+      var _this2 = this;
+
+      axios.put("/api/admin/records/cancel/".concat(this.recordId), {}, {//headers: {'Authorization': 'Bearer fjheu834jd740dk3j59djh3948dk3498e'},
+      }).then(function (response) {
+        if (response.data) {
+          _this2.$parent.showRecords();
+
+          _this2.$refs.close_modal_action_records.click(); //this.successTitleMessage = 'Успешно отменено'
+          //this.$refs.mess_about_success_action.click();
+
+        }
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -14672,7 +14687,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Введите текс сообщения"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.comment]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                <div v-if=\"otherTimeRecords.length !== 0\" class=\"form-group row\">\n                                    <label class=\"col-3 col-form-label\">Также</label>\n                                    <div class=\"col-9\">\n                                      <span style=\"display: block\" v-for=\"item in otherTimeRecords\">{{ item.date }} {{ item.time }}</span>\n                                    </div>\n                                  </div>")], 64
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.comment]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                <div v-if=\"otherTimeRecords.length !== 0\" class=\"form-group row\">\n                                                      <label class=\"col-3 col-form-label\">Также</label>\n                                                      <div class=\"col-9\">\n                                                        <span style=\"display: block\" v-for=\"item in otherTimeRecords\">{{ item.date }} {{ item.time }}</span>\n                                                      </div>\n                                                    </div>")], 64
   /* STABLE_FRAGMENT */
   )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_41, [_hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
@@ -14697,7 +14712,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, " Подтвердить ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.statusRecord !== 1 && _ctx.statusRecord !== 4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 2,
     onClick: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-      return _ctx.cancelRecord();
+      return $options.cancelRecord();
     }, ["prevent"])),
     "class": "btn btn-info mr-1"
   }, "Отменить ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
@@ -14705,7 +14720,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[10] || (_cache[10] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return _ctx.deleteRecord();
     }, ["prevent"]))
-  }, "Удалить")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.card-footer ")], 8
+  }, "Удалить ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.card-footer ")], 8
   /* PROPS */
   , _hoisted_10)])])])], 512
   /* NEED_PATCH */
